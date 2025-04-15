@@ -1,0 +1,111 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+# Implementation plan
+
+## Phase 1: Environment Setup
+
+1. **Prevalidation**: Check if the current directory already contains a CodeGuide Starter Pro kit (look for folders such as `/components`, `/hooks`, `/lib`, `/types`, `/utils`). If detected, skip initializing a new project. (*PRD: Project Requirements Document*)
+
+2. **Install Core Tools**: Ensure Node.js v20.2.1 is installed. Run `node -v` to confirm the version. If it’s not installed, please download and install Node.js v20.2.1 (*Tech Stack: Core Tools*)
+
+3. **Clone Starter Kit**: If not already done, clone the CodeGuide Starter Pro kit to set up a clear folder structure (i.e. `/components`, `/hooks`, `/lib`, `/types`, `/utils`). (*CodeGuide Starter Pro Kit Details*)
+
+4. **Cursor Setup**: Since we are using Cursor as the AI-powered IDE, perform the following:
+   - Navigate to the project root and check if a `.cursor` directory exists. If not, create it.
+   - Inside the `.cursor` directory, check for the presence of `cursor_metrics.md`. If missing, create the file as per instructions in `cursor_project_rules.mdc`.
+
+5. **Supabase MCP Configuration in Cursor**:
+   - In the project root, within the `.cursor` directory, create or open the file `mcp.json`.
+   - Depending on your operating system, add the following configuration (note the use of the placeholder `<connection-string>` which will be replaced with your actual connection string after you retrieve it):
+       - **macOS**:
+         ```json
+         { "mcpServers": { "supabase": { "command": "npx", "args": ["-y", "@modelcontextprotocol/server-postgres", "<connection-string>"] } } }
+         ```
+       - **Windows**:
+         ```json
+         { "mcpServers": { "supabase": { "command": "cmd", "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-postgres", "<connection-string>"] } } }
+         ```
+   - Display the link (make sure you visit this link): [Supabase MCP Connection](https://supabase.com/docs/guides/getting-started/mcp#connect-to-supabase-using-mcp). Replace `<connection-string>` with your own connection string obtained from the link.
+   - Once updated, navigate to **Settings/MCP** within Cursor and confirm that the server status is green (active). (*Tech Stack: Supabase Setup in Cursor*)
+
+## Phase 2: Frontend Development
+
+6. **Initialize Next.js with Specific Version**: Use Next.js 14 (Note: Next.js 14 is better suited with current AI coding tools and LLM models). Initialize the project with TypeScript support. (*Tech Stack: Next.js, CodeGuide Starter Pro Kit Details*)
+   - Example command: `npx create-next-app@14 . --typescript`
+
+7. **Integrate Tailwind CSS**: Set up Tailwind CSS according to the official instructions. Modify the configuration files as needed. (*Tech Stack: Tailwind CSS*)
+
+8. **Integrate Shadcn UI**: Install and configure Shadcn UI components for a clean, minimalist interface. (*Tech Stack: Shadcn UI, CodeGuide Starter Pro Kit Details*)
+
+9. **Implement Home Page UI**: Create the main page at `/pages/index.tsx` that shows the interface for input (text box and image upload).
+   - Add model selection dropdown to choose between AI models (Replicate and Fal), ensuring that parameter fields update dynamically based on the selected model. (*PRD: Core Features, App Flow Document*)
+
+10. **Develop Input Component**: Under `/components/`, create an input form component (e.g. `ImageGeneratorForm.tsx`) that supports:
+    - Text description input
+    - Image file upload
+    - Real-time visual feedback (spinner/progress indicator) during image generation
+    - Error message display for failures
+    (*PRD: Core Features, UI/UX*)
+
+11. **Implement Session-Based History UI**: Create a component (e.g. `/components/HistoryPanel.tsx`) that displays a session-based gallery of generated images with options to delete or share images. (*PRD: History Management, Social Sharing*)
+
+12. **Social Sharing Integration**: Add social media sharing buttons/components (using available APIs) within the image history and result displays. (*PRD: Social Sharing*)
+
+13. **Frontend Validation**: Test UI components manually to ensure dynamic parameter fields update and that error messages appear appropriately when needed. (*PRD: Real-time Feedback, UI/UX*)
+
+## Phase 3: Backend Development
+
+14. **Supabase Database Setup**: Using the preconfigured Supabase settings from the CodeGuide Starter Pro kit, create a table in PostgreSQL for session-based image history. Example schema:
+    - Table: `images_history`
+      - Columns: `id` (primary key), `session_id` (text), `image_url` (text), `model_used` (text), `parameters` (json), `created_at` (timestamp)
+    (*Tech Stack: Supabase, PRD: History Management*)
+
+15. **API Endpoint for Image Generation**: Create an API route for image generation. For example, create a file at `/pages/api/generate-image.ts` that:
+    - Accepts text or image upload as input
+    - Determines which external API to call based on the selected model (Replicate or Fal)
+    - Calls the external API and returns the generated image URL or error message
+    (*PRD: Model Selection, Flexible Input, API Usage*)
+
+16. **Integrate External AI APIs**: Within the newly created API endpoint, integrate with Replicate and Fal.
+    - Handle timeouts, rate-limiting, and downtime gracefully by implementing fallback or retry logic.
+    (*PRD: API Usage, Error Handling*)
+
+17. **Session Management for History**: When an image is generated, store its details (image URL, model used, parameters, session ID, timestamp) in the Supabase database. Write the necessary database insertion code within the API handler.
+    (*PRD: History Management*)
+
+18. **Endpoint for Managing History**: Create additional API routes (e.g. `/pages/api/history.ts`) to fetch and delete images from the session-based history. (*PRD: History Management*)
+
+19. **Backend Validation**: Test the API endpoints using tools like Postman or cURL. Example: Run `curl -X POST http://localhost:3000/api/generate-image` with sample data and verify a 200 response with a valid image URL. (*PRD: Real-time Feedback, API Usage*)
+
+## Phase 4: Integration
+
+20. **Connect Frontend and Backend**: In the frontend component `ImageGeneratorForm.tsx`, implement API calls (e.g. using `fetch` or `axios`) to the image generation endpoint.
+    (*App Flow Document: Image Generation Flow*)
+
+21. **Session Synchronization**: Ensure that after each API call, the generated image and its related data are sent to the History panel and stored in the session database. (*PRD: History Management*)
+
+22. **Social Sharing Integration (Frontend)**: When a share action is triggered in the History panel, call the appropriate social sharing API (or use Web Share API) to share the image link. (*PRD: Social Sharing*)
+
+23. **Error and Loading State Integration**: Connect real-time feedback elements (loading spinners, error pop-ups) in the frontend with the responses from the backend API endpoints. (*PRD: Real-time Feedback, Error Handling*)
+
+24. **Integration Validation**: Manually test the full flow—from input submission, through API call, to image display and history update—to ensure data consistency and error handling. (*PRD: Performance, Error Handling*)
+
+## Phase 5: Deployment
+
+25. **Prepare for Deployment**: Ensure that environment variables (such as Supabase connection strings) are properly set in a `.env` file. Ensure all endpoints are set to use HTTPS.
+    (*Tech Stack: Deployment, Security*)
+
+26. **Deploy Frontend**: Deploy the Next.js application to your hosting provider (for example, Vercel). Follow Next.js deployment guidelines and verify that the project uses Next.js 14. (*Tech Stack: Next.js, Deployment*)
+
+27. **Deploy Supabase**: Confirm that the Supabase instance (with the defined PostgreSQL schema) is properly configured and connected using the MCP setup from Phase 1. (*Tech Stack: Supabase*)
+
+28. **Post-Deployment Testing**: Perform end-to-end tests in the deployed environment. Validate image generation, history management, social sharing, and error handling by simulating user interactions. (*PRD: App Flow Document, Q&A: Pre-Launch Checklist*)
+
+29. **Set Up Monitoring and Logging**: Configure monitoring for API response times and error logs. This may include using Supabase’s built-in logs and any additional monitoring tools as provided by your deployment platform. (*PRD: Performance, Error Handling*)
+
+30. **Final Review and Documentation**: Validate all steps, update project documentation with setup guides, API usage, and any additional notes for future enhancements or integration of Clerk Auth for authentication. (*PRD: Future Extensions, CodeGuide Starter Pro Kit Details*)

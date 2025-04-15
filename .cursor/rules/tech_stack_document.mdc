@@ -1,0 +1,77 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+# Tech Stack Document
+
+This document explains the technology choices for our text-to-image generation website in a simple and clear manner. The aim is to showcase how each component contributes to creating a user-friendly and reliable platform for everyone.
+
+## Frontend Technologies
+
+Our choice for the frontend focuses on providing a modern, responsive, and visually appealing interface that ordinary users can easily interact with. Key technologies include:
+
+- **Next.js**: Forms the backbone of our web application and enables fast rendering and a smooth user experience. 
+- **Tailwind CSS**: Helps us design a clean and minimalist look, in line with our design philosophy, ensuring that the website looks good on all devices.
+- **Typescript**: Enhances the robustness of our code by catching errors early which ultimately leads to a more stable user interface.
+- **Shadcn UI**: Provides us with pre-built and customizable UI components, allowing us to create attractive and interactive elements quickly.
+
+These choices ensure that our users’ experience is intuitive and responsive, while supporting dynamic behaviors like model selection and real-time feedback.
+
+## Backend Technologies
+
+To power the image generation functionality and manage data, our backend is built with several modern technologies optimized for performance and ease of maintenance:
+
+- **Supabase**: Acts as our primary database and server solution. It stores user image history without requiring login and supports features like image management and deletion.
+- **External APIs (Replicate/Fal)**: We integrate with external AI generation APIs to handle the heavy lifting of generating images. These APIs dynamically adjust to user input, whether text or uploaded images, providing the requested visual output.
+- **Open AI**: Though our main generation APIs come from providers like Replicate or Fal, Open AI is part of our toolkit to possibly extend functionalities or serve additional services in the future.
+
+Together, these backend choices support the application's core functionality by efficiently processing requests, managing data, and allowing flexible model configuration based on user input.
+
+## Infrastructure and Deployment
+
+We have selected robust and proven tools to manage the deployability, scalability, and maintenance of the project. Key points include:
+
+- **Hosting & Deployment (Vercel or Similar)**: Leveraging modern cloud-based hosting ensures high availability and ease of updates through continuous deployment pipelines.
+- **CI/CD Pipelines**: Automated workflows manage testing and deployment, allowing changes to be quickly and safely integrated into the live application.
+- **Version Control (GitHub)**: Our project is version-controlled and follows best practices, ensuring a transparent and collaborative development process.
+- **CodeGuide Starter Pro Kit**: Our structured starter kit provides a solid project foundation with a detailed folder structure and pre-configured tools, streamlining development and future maintenance.
+
+These infrastructure choices help maintain the high reliability and scalability needed for a smooth user experience even under varying loads.
+
+## Third-Party Integrations
+
+To enhance our website’s functionality and streamline operations, the project makes use of several third-party services:
+
+- **External API Services (Replicate and Fal)**: These services are used to generate images from text and uploaded images, capitalizing on advanced AI capabilities without the overhead of managing complex AI models in-house.
+- **Clerk Auth**: Although our platform does not require users to log in to view or manage their image history, Clerk Auth is integrated to provide secure authentication if needed in future enhancements or for administrative purposes.
+- **Social Sharing Tools**: Integration with external sharing services allows users to directly share their generated images on various social media platforms, fostering community engagement and enhancing user interaction.
+
+These integrations bring best-in-class, specialized solutions into our platform, which enrich the user experience while keeping the system lean and efficient.
+
+## Security and Performance Considerations
+
+Ensuring a secure and high-performing service is key to user satisfaction. Our approach includes:
+
+- **Authentication & Authorization**: Even though registration is not necessary, we implement secure methods (using tools like Clerk Auth) to protect any potential sensitive endpoints.
+- **Data Protection**: Supabase is used to securely store user data including the history of generated images, ensuring privacy and reliability.
+- **Error Handling**: Clear pop-up error notifications inform users in real-time if anything goes wrong, allowing them to adjust and retry seamlessly.
+- **Performance Optimizations**: Our stack (Next.js with Typescript and Tailwind CSS) has been chosen for its speed and efficient processing. The design emphasizes minimalism to ensure quick loading times and smooth interactivity.
+
+These measures help keep our application both secure and performant, directly contributing to a positive user experience.
+
+## Conclusion and Overall Tech Stack Summary
+
+In summary, the technology stack for our text-to-image generation website is carefully chosen to align with project goals and user needs. Here’s a recap of our key selections:
+
+- **Frontend**: Next.js, Tailwind CSS, Typescript, Shadcn UI – all selected to offer a sleek, responsive, and user-friendly interface.
+- **Backend**: Supabase along with external AI services (Replicate, Fal, and Open AI), ensuring robust data management and advanced image generation capabilities.
+- **Infrastructure**: Modern deployment practices using cloud hosting, CI/CD pipelines, and GitHub for version control which provide scalability and reliability.
+- **Third-Party Integrations**: Clerk Auth for authentication when needed, social sharing integrations, and external API services to maintain a high-quality user experience without reinventing the wheel.
+- **Security & Performance**: Meticulous error handling, data security measures, and performance optimizations contribute to a seamless and safe user journey.
+
+This well-rounded tech stack is designed to give users a simple yet powerful tool for generating unique images from text descriptions or photos, all while ensuring that the site remains accessible, efficient, and secure.
+
+The combination of modern frontend frameworks, resilient backend services, reliable infrastructure, and useful integrations sets our project apart by providing a comprehensive solution tailored for a broad audience.

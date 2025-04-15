@@ -1,0 +1,36 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+# App Flow Document
+
+## Onboarding and Sign-In/Sign-Up
+
+When a new user visits the website, they first encounter a clean and minimalistic landing page designed to introduce the purpose of the site – generating images from text descriptions or uploaded images. The landing page communicates the idea clearly with a welcome message and a prominent call-to-action button that invites the user to begin the creative process. Although the website is intended for any user and does not require login to view generated image history, there is an option for users who want to create an account for additional features. For those who decide to sign up, they can choose from email sign-up or social login methods. The sign-up process requires entering basic information and verifying the account if needed. Once an account is created, users can sign in using their credentials. There is also a clear option to recover a lost password, where users can request a password reset through their email. Signing out is straightforward and is available from a small menu usually located at the top or in a side navigation bar.
+
+## Main Dashboard or Home Page
+
+After signing in or choosing to continue without an account, users are taken to the main dashboard. This default homepage is designed to be intuitive and minimalistic. It features a simple header and a clean layout that emphasizes the main action areas. The page displays an introduction to the available AI models along with a navigation menu that helps users move to other sections of the site, such as model selection or viewing image history. A dynamic area on the homepage allows users to either start generating a new image or scroll through previously generated images even if they have not logged in. This central location ties together the creative process and history management in one coherent view.
+
+## Detailed Feature Flows and Page Transitions
+
+The creative process starts with model selection and input options. When a user clicks the call-to-action button on the landing page or in the main dashboard, they are taken to a dedicated page where they can choose among different AI generation models provided by external APIs like Replicate or Fal. The interface on this page is dynamic; once a model is chosen, relevant configuration parameters appear for the user to customize the generation process. This page also allows users to either enter a text description or upload an image file. There are no restrictions on image format or text length, and the design ensures that users can clearly see the options available based on their selected model.
+
+Once the user has configured the model and provided their input, they initiate the image generation process. The system processes the request by communicating with the external API and displays a real-time progress interface. Throughout this stage, users are kept informed with visual cues that indicate the image is being created. If the process faces any issue, an error pop-up immediately appears on the screen with a clear and concise message about what went wrong, allowing the user to try again.
+
+After successful generation, the website transitions to a page that displays the newly generated image prominently. Alongside this, a history section is integrated into the same view or accessible through a tab, which showcases all previously generated images in a chronological timeline. This section is built to work per user session so that every generated image is stored independently. While users do not need an account to view their history, those who are signed in have the added benefit of managing their records. They can choose to delete images they no longer wish to see, and sharing options are available for distributing images directly through external social media platforms.
+
+## Settings and Account Management
+
+For users who create an account, there is an account management area where personal information and preferences can be easily updated. From this settings section, users can adjust notification settings, manage their saved image history, and review any other personal details that the system might store such as usage preferences. If billing or subscription options ever become part of the service, they would also appear in this section. Users can navigate back to the main creative dashboard from the settings page by clicking the clearly marked home or dashboard link, making it simple to return to the core features of the site.
+
+## Error States and Alternate Paths
+
+During interaction with the website, there may be scenarios where users input invalid data or encounter connectivity problems. In such cases, the website immediately responds by either highlighting the field with the incorrect input or displaying a clear error pop-up message. When an image generation fails or if there is any issue with the external API communication, a friendly and easy-to-understand error pop-up is shown on the screen. This ensures that users know what went wrong and can adjust their input or retry the generation process. Even when a user navigates to an incorrect page or there is a network outage, the site provides fallback pages or redirects to ensure that the overall journey remains as smooth and unobtrusive as possible.
+
+## Conclusion and Overall App Journey
+
+The entire experience takes the user from a simple introductory landing page, through a creative model selection process, and into an engaging image generation journey with real-time feedback. The process is designed to be accessible and straightforward, catering to users who may be casual browsers as well as those who wish to explore the creative capabilities offered by AI models. Even if users do not create an account, they can still enjoy a full session with individually stored image history and management features. All generated images are displayed on a timeline that brings a sense of continuity and progress to the creative flow. Social sharing and account management, where applicable, are integrated smoothly so that the user experience remains consistent, engaging, and free of unnecessary complexity. The entire lifecycle from initiating a project to managing the outcomes is connected seamlessly to ensure that every user action naturally leads to the next step in the creative process.

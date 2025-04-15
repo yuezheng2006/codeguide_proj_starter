@@ -1,0 +1,68 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+# Implementation Plan Overview
+
+Based on your summary, we can break down the project into several key components. Each component can be built with our security-first approach in mind, ensuring that we address concerns such as secure API integration, robust session management, error handling, and a clean, minimalist UI. Below is an overview of the major areas we can focus on:
+
+## 1. API Integration
+- **External AI APIs (Replicate, Fal):**
+  - Authentication and secure API key management
+  - Request formatting and parameter handling
+  - Error handling and rate limit management
+  - Logging and monitoring of API calls
+- **Future Integration with OpenAI:**
+  - Scalable design to accommodate additional API calls
+
+## 2. Frontend Development
+- **Framework & Tools:** Next.js, Tailwind CSS, Typescript, Shadcn UI
+  - Responsive and minimalist design
+  - Dynamic parameter display based on the selected AI model
+  - Real-time feedback (progress indicators, error pop-ups)
+- **Social Sharing:**
+  - Integration with social platforms, ensuring secure sharing practices (e.g., safe redirection, OAuth where applicable)
+
+## 3. Backend & Session Management
+- **Supabase Usage:**
+  - Session-based history management for generated images
+  - Serverless function implementations to handle interactions with external APIs
+- **Session Persistence:**
+  - Handling sessions via secure cookies or local storage with a focus on security (e.g., secure attributes, proper expiry)
+
+## 4. Error Handling & Monitoring
+- **Robust Error Handling:**
+  - User-friendly error pop-ups with clear instructions
+  - Logging mechanisms for back-end errors to monitor and trigger alerts
+  - Potential retry mechanisms for handling transient API failures
+
+## 5. Security Considerations
+- **HTTPS Enforcement and Secure Communications**
+- **Data Handling:**
+  - Secure management of credentials and sensitive session data
+  - Implementation of security headers (e.g., Content-Security-Policy, Strict-Transport-Security)
+- **Defensive Coding:**
+  - Input validation and output encoding on both frontend and backend
+  - Regular vulnerability scans for dependencies
+
+## 6. Testing & Deployment
+- **Cross-Browser and Device Testing:**
+  - Ensure consistent behavior across various platforms
+- **Deployment Setup:**
+  - Vercel or a similar hosting provider with secure configurations and controlled access
+  
+## Next Steps
+I can help break down any of these areas step-by-step. 
+
+**Which component would you like to focus on first?**
+
+Possible starting points include:
+- Detailed API integration strategy (handling external AI APIs)
+- Frontend UI development and secure session management
+- Error handling and security setup
+- Backend development with Supabase integration
+
+Let me know your preference, and we can dive deeper into that aspect of the implementation plan.

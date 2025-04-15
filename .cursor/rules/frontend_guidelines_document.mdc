@@ -1,0 +1,101 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+# Frontend Guideline Document
+
+## Frontend Architecture
+
+Our frontend is built using Next.js, a React-based framework that helps us build fast, scalable web applications. We rely on TypeScript to make our code more robust and easier to maintain. Tailwind CSS and Shadcn UI support our UI styling and component design, ensuring a consistent look and feel throughout the app. 
+
+This architecture is designed to be scalable as more features are added. The component-based approach means that as we build and refine individual parts of the app, the overall structure remains manageable. With Next.js, we also benefit from server-side rendering, which contributes to performance and SEO, making the app faster and more accessible.
+
+## Design Principles
+
+We built this application with simplicity in mind. The key design principles include:
+
+- **Usability:** The interface is clean and intuitive, making it easy for anyone to generate images without needing technical knowledge.
+- **Accessibility:** We ensure that the application is usable by everyone, with clear navigation and visible feedback during image generation.
+- **Responsiveness:** Our design adapts to a variety of devices, ensuring that users get a consistent experience whether they are on a phone, tablet, or desktop.
+- **Minimalism:** We keep the design clutter-free, focusing on the essential features like image generation, history tracking, and sharing.
+
+These principles guide every decision from layout planning to choosing interactive components.
+
+## Styling and Theming
+
+For styling, we use Tailwind CSS, which provides utility-first classes to design a modern, clean, and highly responsive UI. The design approach marries modern flat design with hints of glassmorphism, giving the application a fresh, contemporary look without being too flashy.
+
+### Styling Methodologies:
+
+- **CSS Methodology:** We follow a utility-first approach combined with best practices from BEM when needed to maintain clarity in our class naming.
+- **Pre-processors & Frameworks:** Tailwind CSS is our primary tool for styling, enhancing our ability to build consistent, responsive designs quickly.
+
+### Theming & Style Guidelines:
+
+- **Design Style:** Modern with a touch of glassmorphism elements for subtle depth and modern flat design principles.
+- **Color Palette:** 
+  - Primary: #1A202C (dark slate for text and interface elements)
+  - Secondary: #2D3748 (used for backgrounds and accents)
+  - Accent: #3182CE (blue highlights for interactive elements)
+  - Light: #EDF2F7 (for backgrounds and softer text areas)
+  - Error: #E53E3E (for error messages and warnings)
+
+- **Fonts:** We use system-friendly sans-serif fonts like 'Inter' which provide a clean, modern look that is consistent across devices and operating systems.
+
+This approach ensures that every part of the application feels cohesive and helps in building a strong identity.
+
+## Component Structure
+
+Our application is built using a component-based architecture. This means that every part of the UI – whether it's a button, input field, or the section displaying generated images – is encapsulated in its own reusable component. 
+
+- **Organization:** Components are organized in a logical folder hierarchy, making it easy to locate and update them as needed.
+- **Reusability:** Common functionalities are abstracted into reusable components which simplifies maintenance and increases consistency across the app.
+
+This structure not only aids in keeping the codebase clean but also makes collaboration among developers smoother, as each component functions as an independent unit.
+
+## State Management
+
+For managing the state of our application, we leverage React’s inbuilt Context API along with local component state where appropriate. This allows us to manage image generation options, user inputs, and session-based history.
+
+- **State Sharing:** The state is shared across components using well-structured providers. This means that key data such as the list of images in session-based history and current generation status are easily accessible, ensuring a fluid and responsive user experience.
+
+This flexible state management solution keeps the app responsive and reduces the overhead of maintaining complex state logic.
+
+## Routing and Navigation
+
+Routing is handled by Next.js, which offers file-based routing that automatically maps files in the pages directory to URL paths. 
+
+- **Navigation:** Users can easily move between different parts of the application such as the home page where they generate images and the history section where they manage their previously generated images. 
+
+This clean and intuitive navigation ensures that users quickly find what they need, whether they are generating a new image or revisiting past results.
+
+## Performance Optimization
+
+We use several strategies to ensure the application is fast and responsive:
+
+- **Lazy Loading:** Components and images are loaded on demand, ensuring that users aren’t held up by unnecessary resources during initial load.
+- **Code Splitting:** Next.js automatically splits our code, reducing the size of files needed for the initial render and speeding up load times.
+- **Asset Optimization:** We optimize images and other assets to ensure quick loading, even when the images are generated dynamically.
+
+Together, these practices contribute to a high-performing user experience that remains snappy even as functionality is added.
+
+## Testing and Quality Assurance
+
+We believe in robust quality assurance to deliver a reliable experience. Our testing strategy covers various types of tests:
+
+- **Unit Testing:** Focus on individual components and functions, ensuring that they behave as expected in isolation using frameworks like Jest.
+- **Integration Testing:** Verify that components interact correctly using tools such as React Testing Library.
+- **End-to-End Testing:** Simulate user interactions with the application to catch any issues across the entire workflow. This is achieved with tools that drive a real browser, ensuring our app works correctly in a live environment.
+
+Maintaining a strong suite of tests ensures ongoing quality and fosters confidence when we deploy new features.
+
+## Conclusion and Overall Frontend Summary
+
+This document outlines our approach to building a modern, efficient, and user-friendly web application. We leverage Next.js with TypeScript for a robust architecture, adhere to modern design principles such as usability, simplicity, and responsiveness, and use Tailwind CSS and Shadcn UI to style our components consistently.
+
+Our architecture emphasizes a clear component structure, efficient state management, and seamless routing to provide a smooth user experience. With a focus on performance optimization and comprehensive testing, we ensure that even as our application scales, it remains fast and reliable.
+
+Ultimately, our frontend is designed to support the core project goal: making advanced AI image generation accessible to everyone. By combining modern technologies with best practices in design and development, we deliver a solution that is both powerful and easy to use, distinguishing our project in the competitive landscape of AI-driven creative tools.

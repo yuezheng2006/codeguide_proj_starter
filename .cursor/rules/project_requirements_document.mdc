@@ -1,0 +1,111 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+# Project Requirements Document
+
+## 1. Project Overview
+
+This project is a web-based platform that helps users generate images based on their text descriptions or uploaded images. The idea is to create a simple, intuitive website where even ordinary users can harness the power of AI-driven image generation. By selecting a suitable AI model powered by external APIs like Replicate or Fal, users can customize settings and parameters to create artwork that matches their vision. The website also keeps a history of generated images so users can revisit and manage their creative journey.
+
+The main goal behind building this platform is to make creative image generation accessible without the need for complex accounts or technical expertise. Key objectives include offering a seamless design with real-time feedback during image generation, supporting multiple creative inputs (text and images) without restrictions, and enabling easy management and sharing of generated artwork. Overall, the project seeks to democratize creative expression through AI, ensuring a user-friendly experience from start to finish.
+
+## 2. In-Scope vs. Out-of-Scope
+
+**In-Scope:**
+
+*   A clean, minimalist landing page that introduces users to the website’s functionality.
+*   Dynamic selection of AI models (powered via external APIs such as Replicate or Fal) with adjustable configuration options.
+*   Ability to input plain text or upload images without format or length restrictions.
+*   Real-time feedback during the image generation process with visible progress and clear error notifications (via pop-ups).
+*   History tracking where each generated image is stored independently, with functionalities for users to view, manage, and delete their images.
+*   Social sharing capabilities to easily share generated images on various external platforms.
+*   A simple and intuitive user interface designed for ordinary users.
+
+**Out-of-Scope:**
+
+*   Any form of user account or login system for generating or managing image history; session-based storage is sufficient.
+*   Advanced editing or customization options for generated images beyond the provided parameters for each AI model.
+*   Integration with payment systems or monetization features, as the focus remains purely on creative output.
+*   Advanced analytics or reporting on user activity beyond simple history management.
+*   Custom image file format converters or imposing restrictions on textual input.
+
+## 3. User Flow
+
+A typical user journey starts with the landing page, where visitors are greeted by a clean and minimalistic design. The homepage quickly communicates the purpose of the site and displays a clear call-to-action, inviting users to start the creative process. Once the user clicks the action button, they are directed to a page where they can choose an AI model and input either a descriptive text or an image upload. The interface dynamically updates to show parameters specific to the chosen model, ensuring users always see only what is relevant based on their selection.
+
+After setting their parameters and providing the necessary input, users initiate the image generation process. During this process, the system provides real-time feedback, showing a progress indicator and alerting them immediately if something goes wrong with an error pop-up. Once the generation process completes successfully, the new image is displayed prominently, and the user’s creative history is updated with this new entry. Users can later review this history, manage their collection by deleting unwanted images, or share their favorite creations on social media platforms without any additional steps such as signing in.
+
+## 4. Core Features
+
+*   **Model Selection and Configuration:**\
+    Allows users to choose between various AI models provided by external APIs (e.g., Replicate, Fal). The interface adjusts dynamically to present relevant parameters and configuration options based on the selected model.
+*   **Input Flexibility:**\
+    Users can generate images by submitting either text descriptions or uploading images. There are no restrictions on text length or image formats, making the process inclusive and flexible for all types of input.
+*   **Real-Time Generation Feedback:**\
+    Once an image generation request is made, users receive visual feedback indicating that the process is underway. In case of any errors, clear and immediate error pop-ups are displayed.
+*   **History Tracking and Management:**\
+    Every generated image is stored in an individual history record, which is maintained on a per-session basis without requiring user login. Users can easily manage their history by viewing and deleting images as needed.
+*   **Social Sharing Integration:**\
+    The platform includes functionality for users to share their generated images across various social media platforms directly from the website.
+*   **Minimalist User Interface:**\
+    The design emphasizes simplicity and ease-of-use, ensuring a clean aesthetic that is inviting and straightforward for everyday users.
+
+## 5. Tech Stack & Tools
+
+*   **Frontend Framework:** Next.js\
+    Provides a fast, server-side rendering experience with robust routing features.
+*   **Styling:** Tailwind CSS\
+    Enables a modern, responsive, and easy-to-maintain design system.
+*   **Language:** Typescript\
+    Adds type safety to JavaScript for improved development reliability.
+*   **Backend & Database:** Supabase\
+    Offers serverless backend functionalities and real-time database features to manage session-based storage for image history.
+*   **UI Components:** Shadcn UI\
+    Pre-built components that help maintain consistency and a minimalist design throughout the platform.
+*   **User Authentication (if ever required in the future):** Clerk Auth\
+    Although not needed for the first version, it’s available for potential future integrations.
+*   **Image Generation API Integration:** External APIs such as Replicate and Fal\
+    These will handle the heavy lifting of actual image generation using AI.
+*   **Open AI Integration:** Open AI may also be referenced for potential future features.
+*   **IDE Integration:** Cursor\
+    This advanced IDE tool provides real-time suggestions and coding assistance during development.
+
+## 6. Non-Functional Requirements
+
+*   **Performance:**\
+    Ensure quick response times for image generation requests and fast page loads despite being visually rich. Although specific numbers aren’t mandated, the interface should feel snappy and responsive.
+*   **Security:**\
+    Use secure communication protocols (HTTPS) for all API calls. Even though user logins are not required, data storage (session history) must be handled securely, adhering to standard web security practices.
+*   **Usability:**\
+    The design should be intuitive and accessible for users with varying levels of technical expertise. Error messages should be clear and helpful, and navigation should be straightforward.
+*   **Scalability:**\
+    The architecture should be prepared to handle an increasing number of simultaneous users, especially given the potentially heavy load of AI image generation jobs.
+*   **Compliance:**\
+    Ensure that any external API usage complies with their individual terms of service and data handling policies.
+
+## 7. Constraints & Assumptions
+
+*   The AI image generation is handled entirely by external APIs (e.g., Replicate, Fal), meaning the platform depends on their availability and rate limits.
+*   User history is session-based and independent without the need for user authentication, assuming that the session storage solution can handle the required data lifecycle.
+*   Input restrictions on text or image uploads are intentionally removed to maximize ease-of-use, assuming the external APIs can process varied formats and sizes.
+*   The design and performance rely heavily on modern web technologies (Next.js, Tailwind CSS, Typescript) and assume developers are comfortable working within this tech stack.
+*   Social sharing features will integrate standard APIs provided by social media platforms, assuming these APIs remain stable and accessible.
+
+## 8. Known Issues & Potential Pitfalls
+
+*   **API Rate Limits:**\
+    Relying on external APIs for image generation might lead to rate limiting issues during high traffic or extensive requests. Implementing a queue or fallback strategy may help mitigate this.
+*   **API Downtime or Changes:**\
+    There is a dependency risk if the external service providers change their API specifications or experience downtime. Regular monitoring and clear error messaging are necessary to manage user expectations.
+*   **Session-Based History Management:**\
+    Without user logins, session expiry might lead to loss of generated image history. Consider options for local storage or cookies to prolong the session lifespan if necessary.
+*   **Real-Time Feedback Reliability:**\
+    Providing real-time updates during image generation depends on stable communication with external APIs. In case of delays, users might see inconsistent progress indicators, so timeout and retry mechanisms should be in place.
+*   **Cross-Browser or Device Compatibility:**\
+    Ensuring the minimalist design and functionality work efficiently across various browsers and devices may require rigorous testing and some fallback adjustments.
+
+This document should serve as the comprehensive guide for subsequent technical specifications, ensuring no step or feature is left to assumption. All future integration, development, and testing will reference this clear and complete baseline.

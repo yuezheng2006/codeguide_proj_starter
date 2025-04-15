@@ -1,0 +1,21 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+flowchart TD
+    A[Landing Page]
+    B[Model Selection and Input]
+    C[Generation Process and Real-Time Feedback]
+    D[Generated Image Display and History]
+    E[Manage History and Social Sharing]
+    F[Error Popups]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    C --> F
+    F --> B

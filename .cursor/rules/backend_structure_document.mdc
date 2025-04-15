@@ -1,0 +1,121 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+# Backend Structure Document
+
+This document explains the backend of our AI-powered text-to-image website in everyday language. It covers the architecture, database management, API design, hosting, infrastructure, security, and monitoring so that anyone, even without a technical background, can understand how the backend works.
+
+## 1. Backend Architecture
+
+Our backend is built to make it easy to scale, maintain, and perform well. Here are the key points:
+
+*   **Design Pattern:** The backend uses a structured approach by relying on modern, pre-configured tools and services. It integrates with Supabase for backend services and database management to simplify the overall architecture.
+*   **Frameworks and Tools:** The CodeGuide Starter Pro Kit provides the basic folder structure and configurations. This kit ensures that all necessary tools are set up from the beginning.
+*   **Scalability:** By using cloud-based services (like Supabase) and external APIs (for AI image generation) our backend can handle more users as demand increases without a major overhaul.
+*   **Maintainability:** The clear separation of responsibilities (data storage, API endpoints, external integrations) helps ensure that updates or changes can be made easily and without disrupting the entire system.
+*   **Performance:** We use efficient coding practices and take advantage of the built-in optimizations provided by our chosen technologies, ensuring speedy image generation and minimal wait times for users.
+
+## 2. Database Management
+
+Our database management is centralized in Supabase, which provides a PostgreSQL (SQL based) database. Key details include:
+
+*   **Database Type:** SQL (PostgreSQL)
+*   **Storage:** Information such as user session histories, generated image details, and AI model configurations are securely stored.
+*   **Data Handling Practices:** - Data is carefully structured into tables, making it easy to store, search, and retrieve data quickly - Session-based history means that users can see their recent activity without the need for an account
+
+## 3. Database Schema
+
+The database is built on a SQL schema using PostgreSQL. Here’s a human-readable description and a simple SQL schema outline:
+
+### Human Readable Description:
+
+*   **Users (Session-Based):** Each visitor is assigned a session ID. No personal details like emails or passwords are stored initially, keeping the system simple and privacy-respecting.
+*   **Images Table:** This table records each generated image with details like a unique image ID, which session it belongs to, the URL of the generated image, the model used, and the timestamp of when it was created.
+*   **Models Table:** Although our site primarily uses external APIs, this table can store details about the current AI models available (like Replicate and Fal) and their configurable parameters.
+
+### SQL Schema Outline:
+
+Below is an example of what the database schema might look like using SQL:
+
+• TABLE: images
+
+*   id: Primary key, unique ID for each image
+*   session_id: Text, identifier for the user’s session
+*   image_url: Text, URL where the generated image is stored
+*   model: Text, which AI model (e.g., Replicate, Fal) generated the image
+*   created_at: Timestamp, when the image was created
+
+• TABLE: models
+
+*   id: Primary key, unique model identifier
+*   name: Text, name of the AI model
+*   parameters: JSON, dynamic configuration options for the model
+
+## 4. API Design and Endpoints
+
+We use a simple, clear API design, mostly following a RESTful approach, which means each endpoint has a specific purpose. Key endpoints include:
+
+*   **/api/generate:** This endpoint accepts user input (text or image) along with model parameters, calls the selected AI external API (such as Replicate or Fal), and returns the generated image.
+*   **/api/history:** Retrieves the list of images generated during the current session, allowing the user to view or delete previous images.
+*   **/api/models:** Provides information about available AI models and their configurable parameters. The information here helps drive the dynamic selection of models on the frontend.
+
+These endpoints allow smooth communication between the front end and the backend, ensuring that user requests are processed and responses are delivered quickly.
+
+## 5. Hosting Solutions
+
+The backend is hosted in a cloud environment to provide reliability, scalability, and cost-effectiveness. Details include:
+
+*   **Cloud Service:** We are using Supabase, which is a cloud-based service that handles both backend services and database management.
+
+*   **Benefits:**
+
+    *   High reliability with professional maintenance and built-in performance optimizations.
+    *   The scalability means that as more users visit the site, our infrastructure can grow seamlessly.
+    *   It is cost-effective because it allows for flexible usage and growth without initially high investments.
+
+## 6. Infrastructure Components
+
+The backend infrastructure comprises several components that work together to ensure a smooth user experience:
+
+*   **Load Balancers:** Ensure that user requests are evenly distributed across servers, preventing any single server from becoming overwhelmed.
+*   **Caching Mechanisms:** Temporary storage solutions (like in-memory caches) speed up data retrieval, particularly for frequently accessed information representing dynamic image histories.
+*   **Content Delivery Networks (CDNs):** Used for static assets to deliver files quickly to users across various geographical locations.
+*   **External API Integrations:** Connections to external AI generation services (Replicate, Fal, and potential future use of OpenAI) ensure that image processing is handled efficiently.
+
+These components work as a team to boost performance, reduce latency, and provide a smooth browsing experience for users.
+
+## 7. Security Measures
+
+Security is critical, especially when dealing with session-based data and external API integrations. Here’s how we secure our backend:
+
+*   **HTTPS:** All data transfers are secured using HTTPS, preventing any data interception during communication between users and the server.
+*   **Session Security:** Each user's session data is isolated to protect their generated histories and any potential sensitive information.
+*   **Data Encryption:** Both data in transit and at rest are encrypted, making sure that even if any unauthorized access happens, the data remains protected.
+*   **Error Handling:** Built-in error handling is in place to display error pop-ups to users and to log these errors for continuous monitoring and security checks.
+*   **API Compliance:** We adhere strictly to the terms of service of external APIs (like Replicate and Fal), ensuring that our integrations do not compromise security or data integrity.
+
+## 8. Monitoring and Maintenance
+
+To keep the backend running smoothly, we use several tools and practices for monitoring and upkeep:
+
+*   **Performance Monitoring:** Tools (often provided by Supabase and hosting platforms) continuously check for performance bottlenecks and system health, reacting quickly to issues.
+*   **Regular Updates:** The backend is maintained with routine updates to security protocols, dependencies, and performance improvements.
+*   **Logging:** Systematic logging of user actions and system errors helps in diagnosing any issues promptly and ensuring smooth operation.
+*   **Alerts:** Automated alerts notify the engineering team if any component of the infrastructure shows signs of failure or unusual activity.
+
+## 9. Conclusion and Overall Backend Summary
+
+In summary, our backend is designed with clarity and user-friendliness in mind while maintaining the performance and security required for an AI-powered application. Key highlights include:
+
+*   An architecture built on cloud-based services (Supabase) that ensures easy scaling and maintenance.
+*   A SQL database (PostgreSQL) with a clear, easy-to-understand schema supporting session-based image history.
+*   RESTful API endpoints that facilitate seamless communication between the frontend and our backend services.
+*   A robust hosting solution combined with essential infrastructure components such as load balancers, caching, and CDNs to enhance performance.
+*   Strong security measures including HTTPS, data encryption, and careful error handling to protect user data.
+*   Continuous monitoring and proactive maintenance to ensure long-term reliability.
+
+Overall, the backend structure is aligned with the project’s goals of providing a fast, reliable, and secure experience for users who want to generate images using AI. Its design is straightforward yet effective, making it both accessible and robust enough to handle growth and future feature expansions.

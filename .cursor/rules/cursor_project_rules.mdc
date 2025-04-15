@@ -1,0 +1,113 @@
+---
+description: Apply these rules when making changes to the project
+globs:
+alwaysApply: true
+---
+
+Update this rule if user requested changes to the project requirement, etc.
+## Project Overview
+
+*   **Type:** AI-powered text-to-image generation website
+*   **Description:** A platform where users can input text descriptions or upload images, select an AI model, and generate unique images. The generated images are stored on a session basis without requiring login, with options to manage (delete) and share them.
+*   **Primary Goal:** Enable users to easily generate, manage, and share AI-created images using a clean and minimalist interface, while handling external API dependencies and session management gracefully.
+
+## Project Structure
+
+### Framework-Specific Routing
+
+*   **Directory Rules:**
+
+    *   `Next.js 14`: App Router convention; use the `app/` directory with nested route folders, e.g., `app/[route]/page.tsx` for pages.
+    *   Example 1: "Next.js 14 (App Router)" → `app/[route]/page.tsx` conventions
+    *   Example 2: "Next.js (Pages Router)" → `pages/[route].tsx` pattern (not applicable, avoid mixing with App Router)
+    *   Example 3: "React Router 6" → If used in other projects, follow `src/routes/` with `createBrowserRouter` but not used here.
+
+### Core Directories
+
+*   **Versioned Structure:**
+
+    *   `app/api`: Next.js 14 API routes with Route Handlers for server-side functionality, especially for interacting with Supabase and external APIs.
+    *   `app/components`: UI components built using React and Shadcn UI with Typescript integration.
+    *   `app/styles`: Tailwind CSS configurations and custom styles.
+
+### Key Files
+
+*   **Stack-Versioned Patterns:**
+
+    *   `app/dashboard/layout.tsx`: Defines the root layout for dashboard or main user interaction sections (if applicable).
+    *   `app/generate/page.tsx`: Main page for image generation, encapsulating text input, image upload, and model selection logic.
+    *   `app/api/generate/route.ts`: API route handling image generation requests, integrating with Replicate/Fal external APIs.
+
+## Tech Stack Rules
+
+*   **Version Enforcement:**
+
+    *   `next@14`: Enforce App Router structure using the `app/` directory; avoid using `pages/` directory to maintain consistency.
+    *   `tailwindcss@3`: Use Tailwind CSS for responsive design and utility-first styling.
+    *   `typescript@latest`: Ensure type safety throughout the project.
+    *   `supabase@latest`: Utilize Supabase for session-based data storage and real-time updates.
+
+## PRD Compliance
+
+*   **Non-Negotiable:**
+
+    *   "Users input text descriptions or upload images, select an AI model, and generate an image based on the input." : The project must facilitate dynamic model selection and handle API rate limits and downtimes gracefully, as well as ensure session-based storage without user authentication.
+
+## App Flow Integration
+
+*   **Stack-Aligned Flow:**
+
+    *   Example: "Next.js 14 Image Generation Flow" → `app/generate/page.tsx` handles user input and displays real-time feedback with progress indicators and error pop-ups, integrating server actions for API calls.
+
+## Best Practices
+
+*   Next.js
+
+    *   Use the App Router (`app/` directory) for clear nested routing and server-side rendering.
+    *   Leverage built-in features for performance optimization and error handling.
+    *   Enforce a strict separation between server and client components where applicable.
+
+*   Tailwind CSS
+
+    *   Configure the tailwind.config.js properly for customization and responsiveness.
+    *   Use utility classes for rapid UI development and maintain consistency.
+    *   Keep CSS minimal and modularized.
+
+*   Typescript
+
+    *   Strictly type all components and functions for reliability.
+    *   Utilize interfaces and types to define clear contracts within the code.
+    *   Enable strict mode to catch potential issues early in development.
+
+*   Shadcn UI
+
+    *   Leverage pre-built components for faster UI development and ensure consistency with design.
+    *   Customize themes carefully to maintain design minimalism.
+    *   Keep component overrides minimal to ensure ease of updates.
+
+*   Supabase
+
+    *   Implement proper error handling when interacting with the database.
+    *   Secure API endpoints to prevent unauthorized data manipulation.
+    *   Monitor and optimize database queries for real-time updates.
+
+## Rules
+
+*   Derive folder/file patterns **directly** from tech stack versions as indicated in techStackDoc.
+*   If Next.js 14 App Router: Enforce the `app/` directory with nested route folders.
+*   If Pages Router: Use `pages/*.tsx` flat structure. (Not applicable here.)
+*   Mirror this logic for other frameworks (React Router, SvelteKit, etc.) if used in future projects.
+*   Never mix version patterns (e.g., no `pages/` in App Router projects).
+
+## Rules Metrics
+
+Before starting the project development, create a metrics file in the root of the project called
+
+`cursor_metrics.md`.
+
+### Instructions:
+
+*   Each time a cursor rule is used as context, update `cursor_metrics.md`.
+*   Use the following format for `cursor_metrics.md:`
+
+`# Rules Metrics ## Usage The number of times rules is used as context * rule-name.mdc: 5 * another-rule.mdc: 2 * ...other rules`
